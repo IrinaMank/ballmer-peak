@@ -9,7 +9,7 @@ class TransactionUtils {
         fun getCurrentFragment(fragmentManager: FragmentManager): Fragment? {
             val topFragmentPosition = fragmentManager.backStackEntryCount - 1
             val entry = fragmentManager.getBackStackEntryAt(topFragmentPosition)
-            return if (entry != null) fragmentManager.findFragmentByTag(entry.name) else null
+            return fragmentManager.findFragmentByTag(entry.name)
         }
 
         fun addFragment(manager: FragmentManager, containerId: Int, fragment: Fragment) {
