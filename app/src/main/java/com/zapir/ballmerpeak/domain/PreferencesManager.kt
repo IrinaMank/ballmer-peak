@@ -16,6 +16,8 @@ class PreferencesManager(context: Context) {
 
         private const val LAST_DRINKS = "Last drinks"
         private const val LAST_DRINKS_DATE = "Last drinks date"
+
+        private const val FIRST_LAUNCH = "first launch"
     }
 
     private var sharedPreferences: SharedPreferences? = context.getSharedPreferences("Main " +
@@ -57,6 +59,22 @@ class PreferencesManager(context: Context) {
             val editor = it.edit()
             editor.putString(LAST_DRINKS_DATE, drink.date.toString())
             editor.putFloat(USER_SEX_KEY, drink.drinks.toFloat())
+            editor.apply()
+        }
+    }
+
+    fun firstLaunch(): Boolean {
+        return if (sharedPreferences == null) {
+            true
+        } else {
+            sharedPreferences!!.getBoolean(FIRST_LAUNCH, false)
+        }
+    }
+
+    fun registerLaunch() {
+        sharedPreferences?.let {
+            val editor = it.edit()
+            editor.putBoolean(FIRST_LAUNCH, false)
             editor.apply()
         }
     }

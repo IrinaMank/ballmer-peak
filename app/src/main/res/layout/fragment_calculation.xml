@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        tools:text="Вы на пике!"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_below="@+id/tv_info"
+        android:layout_marginBottom="8dp"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"/>
+
+    <Button
+        android:id="@+id/btn_drink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress_bar"
+        tools:text="Выпить"/>
+
+</RelativeLayout>

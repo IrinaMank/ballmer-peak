@@ -1,7 +1,8 @@
-package com.zapir.ballmerpeak
+package com.zapir.ballmerpeak.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.zapir.ballmerpeak.R
 
 class MainActivity : AppCompatActivity() {
 
