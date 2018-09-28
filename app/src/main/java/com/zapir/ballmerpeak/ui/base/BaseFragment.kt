@@ -1,76 +1,102 @@
-package com.zapir.ballmerpeak.ui.base
+package com.zapir.ballmerpeak.ui
 
+import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.arellomobile.mvp.MvpAppCompatFragment
 import org.slf4j.LoggerFactory
 
-open class BaseFragment : Fragment() {
+abstract class BaseFragment : MvpAppCompatFragment() {
+    companion object {
+        private val PROGRESS_TAG = "bf_progress"
+    }
 
+    abstract val layoutRes: Int
     val logger = LoggerFactory.getLogger(this.javaClass.simpleName)
 
-    open fun replaceFragment(fragment: BaseFragment) {
-        UnsupportedOperationException()
-    }
-
-    open fun addFragment(fragment: BaseFragment) {
-        UnsupportedOperationException()
-    }
-
-    fun getBaseActivity(): BaseActivity {
-        return activity as BaseActivity
+    override fun onAttach(context: Context?) {
+        logger.info("Lifecycle ${javaClass.simpleName} onAttach")
+        super.onAttach(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        logger.info("Lifecycle ${javaClass.simpleName} onCreate")
         super.onCreate(savedInstanceState)
-        logger.info("onCreate")
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        logger.info("onActivityCreated")
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        logger.info("onCreateView")
-        return super.onCreateView(inflater, container, savedInstanceState)
+        savedInstanceState?.let { restoreState(it) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        logger.info("Lifecycle ${javaClass.simpleName} onViewCreated")
         super.onViewCreated(view, savedInstanceState)
-        logger.info("onViewCreate")
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        logger.info("onSavedInstanceState")
+    protected open fun restoreState(state: Bundle) {}
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        logger.info("Lifecycle ${javaClass.simpleName} onCreateView")
+        return inflater.inflate(layoutRes, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
-        logger.info("onResume")
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        logger.info("Lifecycle ${javaClass.simpleName} onActivityCreated")
+        super.onActivityCreated(savedInstanceState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        logger.info("Lifecycle ${javaClass.simpleName} onCreate")
+        super.onViewStateRestored(savedInstanceState)
     }
 
     override fun onStart() {
+        logger.info("Lifecycle ${javaClass.simpleName} onStart")
         super.onStart()
-        logger.info("onStart")
     }
 
-    override fun onStop() {
-        super.onStop()
-        logger.info("onStop")
+    override fun onResume() {
+        logger.info("Lifecycle ${javaClass.simpleName} onResume")
+        super.onResume()
     }
 
     override fun onPause() {
-        logger.info("onPause")
+        logger.info("Lifecycle ${javaClass.simpleName} onPause")
         super.onPause()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        logger.info("Lifecycle ${javaClass.simpleName} onSaveInstanceState")
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onStop() {
+        logger.info("Lifecycle ${javaClass.simpleName} onStop")
+        super.onStop()
+    }
+
     override fun onDestroy() {
-        logger.info("onDestroy")
+        logger.info("Lifecycle ${javaClass.simpleName} onDestroy")
         super.onDestroy()
     }
 
+    override fun onDestroyView() {
+        logger.info("Lifecycle ${javaClass.simpleName} onDestroyView")
+        super.onDestroyView()
+    }
+
+    override fun onDetach() {
+        logger.info("Lifecycle ${javaClass.simpleName} onDetach")
+        super.onDetach()
+    }
+
+//    protected fun showSnackMessage(message: String) {
+//        view?.let {
+//            val snackbar = Snackbar.make(it, message, Snackbar.LENGTH_LONG)
+//            val messageTextView = snackbar.view.findViewById<TextView>(android.support.design.R.id.snackbar_text)
+//            messageTextView.setTextColor(Color.WHITE)
+//            snackbar.show()
+//        }
+//    }
 }
