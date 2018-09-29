@@ -2,11 +2,15 @@ package com.zapir.ballmerpeak.ui.base
 
 import android.os.Bundle
 import com.arellomobile.mvp.MvpAppCompatActivity
+import com.zapir.ballmerpeak.BallmerPeakApplication
+import com.zapir.ballmerpeak.domain.navigation.BaseNavigator
 import org.slf4j.LoggerFactory
+import ru.terrakok.cicerone.Navigator
 
 abstract class BaseActivity : MvpAppCompatActivity() {
 
     abstract val layoutRes: Int
+    protected abstract val navigator: BaseNavigator
     val logger = LoggerFactory.getLogger(this.javaClass.simpleName)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,12 +40,12 @@ abstract class BaseActivity : MvpAppCompatActivity() {
     }
 
     override fun onResumeFragments() {
-        logger.info("Lifecycle ${javaClass.simpleName} onResumeFragments")
         super.onResumeFragments()
+        BallmerPeakApplication.INSTANCE.getRouter().setNavigator(navigator)
     }
 
     override fun onPause() {
-        logger.info("Lifecycle ${javaClass.simpleName} onPause")
+        BallmerPeakApplication.INSTANCE.getRouter().removeNavigator()
         super.onPause()
     }
 

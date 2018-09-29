@@ -1,12 +1,10 @@
-package com.zapir.ballmerpeak.ui
+package com.zapir.ballmerpeak.ui.base
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.arellomobile.mvp.MvpAppCompatFragment
 import org.slf4j.LoggerFactory
 
