@@ -9,7 +9,7 @@ import com.zapir.ballmerpeak.presentation.launch.LaunchView
 @InjectViewState
 class MainPresenter: MvpPresenter<MainView>() {
 
-    private val router = BallmerPeakApplication.INSTANCE.getRouter()
+    private val router = BallmerPeakApplication.INSTANCE.getNavigatorHolder()
 
     fun onCalculateClick() {
         router.navigateTo(Screens.AUTH_SCREEN)

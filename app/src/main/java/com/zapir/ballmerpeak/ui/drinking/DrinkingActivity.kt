@@ -3,7 +3,6 @@ package com.zapir.ballmerpeak.ui.drinking
 import android.content.Context
 import android.content.Intent
 import com.zapir.ballmerpeak.R
-import com.zapir.ballmerpeak.ui.MainActivity
 import com.zapir.ballmerpeak.ui.base.BaseActivity
 
 class DrinkingActivity: BaseActivity() {

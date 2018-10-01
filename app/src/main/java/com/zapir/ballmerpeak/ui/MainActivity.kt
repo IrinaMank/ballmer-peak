@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.zapir.ballmerpeak.BallmerPeakApplication
 import com.zapir.ballmerpeak.R
 import com.zapir.ballmerpeak.Screens
 import com.zapir.ballmerpeak.domain.navigation.BaseNavigator
 import com.zapir.ballmerpeak.presentation.launch.LaunchPresenter
 import com.zapir.ballmerpeak.presentation.launch.LaunchView
-import com.zapir.ballmerpeak.ui.MainFragment
 import com.zapir.ballmerpeak.ui.base.BaseActivity
-import com.zapir.ballmerpeak.ui.setup.InitialFragment
 
 class MainActivity : BaseActivity(), LaunchView {
 
@@ -34,6 +33,26 @@ class MainActivity : BaseActivity(), LaunchView {
                 .beginTransaction()
                 .replace(R.id.container, MainFragment())
                 .commitNow()
+    }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        BallmerPeakApplication.INSTANCE.getNavigatorHolder().setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        BallmerPeakApplication.INSTANCE.getNavigatorHolder().removeNavigator()
+        super.onPause()
+    }
+
+    private val navigator = object : BaseNavigator(this, R.id.container) {
+
+        override fun createFlowIntent(flowKey: String, data: Any?) = getFlowIntent(flowKey, data)
+
+        override fun createFragment(screenKey: String, data: Any?): Fragment? = when (screenKey) {
+            Screens.MAIN_SCREEN -> MainFragment()
+            else -> null
+        }
     }
 
     companion object {

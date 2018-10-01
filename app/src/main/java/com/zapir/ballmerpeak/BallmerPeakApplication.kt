@@ -3,11 +3,7 @@ package com.zapir.ballmerpeak
 import android.app.Application
 import com.zapir.ballmerpeak.domain.PreferencesManager
 import com.zapir.ballmerpeak.domain.navigation.NavigatorHolder
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.Cicerone
-
-
-
+import com.zapir.ballmerpeak.domain.navigation.Router
 
 
 class BallmerPeakApplication : Application() {
@@ -16,8 +12,7 @@ class BallmerPeakApplication : Application() {
     companion object {
         lateinit var INSTANCE: BallmerPeakApplication
         private lateinit var preferencesManager: PreferencesManager
-        private lateinit var cicerone: Cicerone<Router>
-        private var router = com.zapir.ballmerpeak.domain.navigation.Router()
+        private var router: NavigatorHolder = com.zapir.ballmerpeak.domain.navigation.Router()
         private lateinit var navigationHolder: NavigatorHolder
 
     }
@@ -26,18 +21,10 @@ class BallmerPeakApplication : Application() {
         super.onCreate()
         INSTANCE = this
         preferencesManager = PreferencesManager(this)
-        initCicerone()
-    }
-
-    private fun initCicerone() {
-        cicerone = Cicerone.create()
+        router = Router()
     }
 
     fun getNavigatorHolder(): NavigatorHolder {
-        return router
-    }
-
-    fun getRouter(): com.zapir.ballmerpeak.domain.navigation.Router {
         return router
     }
 

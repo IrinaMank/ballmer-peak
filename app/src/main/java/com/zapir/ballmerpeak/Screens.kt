@@ -12,10 +12,6 @@ object Screens {
     const val MAIN_FLOW = "main flow"
     const val MAIN_SCREEN = "main screen"
 
-    fun getFlowIntent(context: Context, flowKey: String, data: Any?): Intent? = when (flowKey) {
-        //Screens.AUTH_FLOW -> InitialActivity.getStartIntent(context)
-        Screens.MAIN_FLOW -> MainActivity.getStartIntent(context)
-
-        else -> null
-    }
+    const val DRINK_FLOW = "drink flow"
+    const val DRINK_SCREEN = "drink screen"
 }

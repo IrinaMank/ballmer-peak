@@ -1,5 +1,6 @@
 package com.zapir.ballmerpeak.domain.navigation
 
+import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import com.zapir.ballmerpeak.ui.base.BaseActivity
@@ -39,6 +40,8 @@ public abstract class BaseNavigator(private val activity: BaseActivity,
         stack.add(key)
     }
 
-    protected abstract fun createFragment(key: String, data: Any? = null): Fragment?
+    abstract fun createFragment(screenKey: String, data: Any? = null): Fragment?
+
+    open fun createFlowIntent(flowKey: String, data: Any?): Intent? = null
 
 }

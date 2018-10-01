@@ -12,12 +12,16 @@ class Router: NavigatorHolder {
         this.navigator = navigator
     }
 
-    fun exit() {
+    override fun exit() {
         navigator?.back()
     }
 
-    fun navigateTo(key: String, data: Any? = null) {
+    override fun navigateTo(key: String, data: Any?) {
         navigator?.navigateTo(key, data)
+    }
+
+    override fun startFlow(key: String, data: Any?) {
+        navigator?.createFlowIntent(key, data)
     }
 
 }
