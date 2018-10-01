@@ -28,26 +28,12 @@ class MainActivity : BaseActivity(), LaunchView {
     override val layoutRes: Int
         get() = R.layout.activity_main
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-
     override fun initMainScreen() {
         super.onResume()
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.container, MainFragment())
                 .commitNow()
-    }
-
-    override val navigator = object : BaseNavigator(this, R.id.container) {
-        override fun createFragment(key: String, data: Any?): Fragment? =
-                when (key) {
-                    Screens.MAIN_SCREEN -> MainFragment()
-                    Screens.AUTH_SCREEN -> InitialFragment()
-                    else -> null
-                }
     }
 
     companion object {

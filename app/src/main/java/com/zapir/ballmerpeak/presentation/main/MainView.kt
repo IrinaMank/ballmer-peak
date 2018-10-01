@@ -8,4 +8,5 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 interface MainView : MvpView {
 
     fun showPercentage(percent: Double)
+    fun revealAnimation()
 }

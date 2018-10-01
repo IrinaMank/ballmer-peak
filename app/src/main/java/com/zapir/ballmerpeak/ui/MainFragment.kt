@@ -8,6 +8,12 @@ import com.zapir.ballmerpeak.presentation.main.MainPresenter
 import com.zapir.ballmerpeak.presentation.main.MainView
 import com.zapir.ballmerpeak.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
+import android.view.ViewAnimationUtils
+import android.animation.Animator
+import android.opengl.ETC1.getHeight
+import android.opengl.ETC1.getWidth
+
+
 
 class MainFragment: BaseFragment(), MainView {
 
@@ -33,4 +39,18 @@ class MainFragment: BaseFragment(), MainView {
     override val layoutRes: Int
         get() = R.layout.fragment_main
 
+    override fun revealAnimation() {
+        val x = calculateButton.left + calculateButton.width
+        val y = calculateButton.top + calculateButton.height
+
+//        val startRadius = 0
+//        val endRadius = Math.hypot(fragment_main_layout.width.toDouble(), fragment_main_layout
+//                .height.toDouble())
+
+//        val anim = ViewAnimationUtils.createCircularReveal(fragment_main_layout, x, y, startRadius.toFloat(),
+//                endRadius.toFloat())
+//
+//        layoutButtons.setVisibility(View.VISIBLE)
+//        anim.start()
+    }
 }

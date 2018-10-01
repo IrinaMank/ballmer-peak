@@ -1,16 +1,20 @@
 package com.zapir.ballmerpeak.ui.base
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.zapir.ballmerpeak.BallmerPeakApplication
+import com.zapir.ballmerpeak.R
+import com.zapir.ballmerpeak.Screens
 import com.zapir.ballmerpeak.domain.navigation.BaseNavigator
+import com.zapir.ballmerpeak.ui.MainFragment
+import com.zapir.ballmerpeak.ui.setup.InitialFragment
 import org.slf4j.LoggerFactory
 import ru.terrakok.cicerone.Navigator
 
 abstract class BaseActivity : MvpAppCompatActivity() {
 
     abstract val layoutRes: Int
-    protected abstract val navigator: BaseNavigator
     val logger = LoggerFactory.getLogger(this.javaClass.simpleName)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,5 +66,14 @@ abstract class BaseActivity : MvpAppCompatActivity() {
     override fun onDestroy() {
         logger.info("Lifecycle ${javaClass.simpleName} onDestroy ")
         super.onDestroy()
+    }
+
+    val navigator = object : BaseNavigator(this, R.id.container) {
+        override fun createFragment(key: String, data: Any?): Fragment? =
+                when (key) {
+                    Screens.MAIN_SCREEN -> MainFragment()
+                    Screens.AUTH_SCREEN -> InitialFragment()
+                    else -> null
+                }
     }
 }

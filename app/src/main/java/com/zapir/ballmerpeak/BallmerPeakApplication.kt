@@ -14,7 +14,7 @@ class BallmerPeakApplication : Application() {
 
 
     companion object {
-        public lateinit var INSTANCE: BallmerPeakApplication
+        lateinit var INSTANCE: BallmerPeakApplication
         private lateinit var preferencesManager: PreferencesManager
         private lateinit var cicerone: Cicerone<Router>
         private var router = com.zapir.ballmerpeak.domain.navigation.Router()
