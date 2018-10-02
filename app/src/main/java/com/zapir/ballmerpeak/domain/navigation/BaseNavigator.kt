@@ -28,7 +28,7 @@ public abstract class BaseNavigator(private val activity: BaseActivity,
         }
     }
 
-    fun navigateTo(key: String, data: Any?) {
+    fun navigateTo(key: String, data: Any? = null) {
         val fragment = createFragment(key, data)
 
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -40,8 +40,22 @@ public abstract class BaseNavigator(private val activity: BaseActivity,
         stack.add(key)
     }
 
+    fun createNewRoot(key: String, data: Any? = null) {
+        clearStack()
+        navigateTo(key, data)
+    }
+
     abstract fun createFragment(screenKey: String, data: Any? = null): Fragment?
 
     open fun createFlowIntent(flowKey: String, data: Any?): Intent? = null
+
+    private fun clearStack() {
+        val count = fragmentManager.getBackStackEntryCount()
+        for (i in 0 until count) {
+            fragmentManager.popBackStack()
+        }
+        stack.clear()
+    }
+
 
 }

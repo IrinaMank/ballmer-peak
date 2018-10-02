@@ -29,10 +29,7 @@ class MainActivity : BaseActivity(), LaunchView {
 
     override fun initMainScreen() {
         super.onResume()
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.container, MainFragment())
-                .commitNow()
+        navigator.createNewRoot(Screens.MAIN_FLOW)
     }
 
     override fun onResumeFragments() {
